@@ -15,3 +15,6 @@
 (defctype value-ref :pointer)
 (defctype basic-block-ref :pointer)
 (defctype builder-ref :pointer)
+
+(defcfun (dispose-module "LLVMDisposeModule") :void
+  (module module-ref))
