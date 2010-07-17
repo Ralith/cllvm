@@ -1,4 +1,4 @@
-(asdf:defsystem :cl-llvm
+(asdf:defsystem :cllvm
   :author "Benjamin Saunders"
   :depends-on (:cffi)
   :version "0.1"
@@ -6,7 +6,10 @@
   ((:module "bindings"
     :serial t
     :components ((:file "package")
-                 (:file "library")))
+                 (:file "library")
+                 (:file "core")
+                 (:file "analysis")
+                 (:file "execution-engine")))
    (:module "wrapper"
     :serial t
     :components ((:file "package")))))
