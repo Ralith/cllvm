@@ -1,3 +1,3 @@
 (defpackage #:llvm-wrapper (:nicknames #:llvm)
-  (:use #:common-lisp)
+  (:use #:common-lisp #:cffi)
   (:export))
