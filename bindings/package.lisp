@@ -55,4 +55,14 @@
    #:get-last-basic-block
    #:get-next-basic-block
    #:get-previous-basic-block
-   #:get-entry-basic-block))
+   #:get-entry-basic-block
+   #:module-provider-ref
+   #:memory-buffer-ref
+   #:pass-manager-ref
+   #:use-ref
+   #:attribute
+   #:int-predicate
+   #:real-predicate
+   #:build-icmp
+   #:build-fcmp
+   #:build-phi))

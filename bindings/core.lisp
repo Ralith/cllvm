@@ -16,6 +16,71 @@
 (defctype basic-block-ref :pointer)
 (defctype builder-ref :pointer)
 
+(defctype module-provider-ref :pointer
+  "Interface used to provide a module to JIT or interpreter.  This is now just a synonym for llvm::Module, but we have to keep using the different type to keep binary compatibility.")
+
+(defctype memory-buffer-ref :pointer
+  "Used to provide a module to JIT or interpreter. See the llvm::MemoryBuffer class.")
+
+(defctype pass-manager-ref :pointer)
+
+(defctype use-ref :pointer)
+
+(defbitfield attribute
+  :zext-attribute
+  :sext-attribute
+  :no-return-attribute
+  :in-reg-attribute
+  :struct-ret-attribute
+  :no-unwind-attribute
+  :no-alias-attribute
+  :by-val-attribute
+  :nest-attribute
+  :read-none-attribute
+  :read-only-attribute
+  :no-inline-attribute
+  :always-inline-attribute
+  :optimize-for-size-attribute
+  :stack-protect-attribute
+  :stack-protect-req-attribute
+  (:alignment #.(ash 31 16))
+  (:no-capture-attribute #.(ash 1 21))
+  :no-red-zone-attribute
+  :no-implicit-float-attribute
+  :naked-attribute
+  :inline-hint-attribute
+  :stack-alignment)
+
+(defcenum int-predicate
+  (:eq 32)
+  :ne
+  :ugt
+  :uge
+  :ult
+  :ule
+  :sgt
+  :sge
+  :slt
+  :sle)
+
+(defcenum real-predicate
+  :false
+  :oeq
+  :ogt
+  :oge
+  :olt
+  :ole
+  :one
+  :ord
+  :uno
+  :ueq
+  :ugt
+  :uge
+  :ult
+  :ule
+  :une
+  :true)
+
 (defcfun (module-create-with-name "LLVMModuleCreateWithName") module-ref
   (name :string))
 
@@ -122,59 +187,74 @@
 (defcfun (dispose-builder "LLVMDisposeBuilder") :void
   (builder builder-ref))
 
+(defun lispify-name (string)
+  (loop for char across string
+        with last-char-upcased = t
+        with output = ""
+        do (when (and (upper-case-p char)
+                      (not last-char-upcased))
+             (setf output (concatenate 'string output "-")))
+           (setf output (concatenate 'string output (string char)))
+           (setf last-char-upcased (upper-case-p char))
+        finally (return (string-upcase output))))
+(defmacro definstr (c-name &body args)
+  `(defcfun (,(intern (concatenate 'string "BUILD-" (lispify-name c-name))) ,(concatenate 'string "LLVMBuild" c-name)) value-ref
+     (builder builder-ref)
+     ,@args))
+(defmacro defvinstr (c-name &body args)
+  `(definstr ,c-name
+     ,@args
+     (name :string)))
+
 ;;; Terminators
-(defcfun (build-ret-void "LLVMBuildRetVoid") value-ref
-  (builder builder-ref))
-(defcfun (build-ret "LLVMBuildRet") value-ref
-  (builder builder-ref)
+(definstr "RetVoid")
+(definstr "BuildRet"
   (value value-ref))
-(defcfun (build-aggregate-ret "LLVMBuildAggregateRet") value-ref
-  (builder builder-ref)
+(definstr "AggregateRet"
   (values (:pointer value-ref))
   (number :unsigned-int))
-(defcfun (build-br "LLVMBuildBr") value-ref
-  (builder builder-ref)
+(definstr "BuildBr"
   (destination basic-block-ref))
-(defcfun (build-cond-br "LLVMBuildCondBr") value-ref
-  (builder builder-ref)
+(definstr "CondBr"
   (condition value-ref)
   (true-block basic-block-ref)
   (false-block basic-block-ref))
 
 ;;; Arithmetic
-(defcfun (build-add "LLVMBuildAdd") value-ref
-  (builder builder-ref)
+(defvinstr "Add"
   (lhs value-ref)
-  (rhs value-ref)
-  (name :string))
+  (rhs value-ref))
 
-(defcfun (build-sub "LLVMBuildSub") value-ref
-  (builder builder-ref)
+(defvinstr "Sub"
   (lhs value-ref)
-  (rhs value-ref)
-  (name :string))
+  (rhs value-ref))
 
-(defcfun (build-mul "LLVMBuildMul") value-ref
-  (builder builder-ref)
+(defvinstr "Mul"
   (lhs value-ref)
-  (rhs value-ref)
-  (name :string))
+  (rhs value-ref))
 
-(defcfun (build-udiv "LLVMBuildUDiv") value-ref
-  (builder builder-ref)
+(defvinstr "UDiv"
   (lhs value-ref)
-  (rhs value-ref)
-  (name :string))
-
-(defcfun (build-sdiv "LLVMBuildSDiv") value-ref
-  (builder builder-ref)
+  (rhs value-ref))
+(defvinstr "SDiv"
   (lhs value-ref)
-  (rhs value-ref)
-  (name :string))
+  (rhs value-ref))
 
 ;;; Casts
-(defcfun (build-trunc "LLVMBuildTrunc") value-ref
-  (builder builder-ref)
+(defvinstr "Trunc"
   (value value-ref)
-  (destination-type type-ref)
-  (name :string))
+  (destination-type type-ref))
+
+;;; Comparisons
+(defvinstr "ICmp"
+  (predicate int-predicate)
+  (lhs value-ref)
+  (rhs value-ref))
+(defvinstr "FCmp"
+  (predicate real-predicate)
+  (lhs value-ref)
+  (rhs value-ref))
+
+;;; Miscellaneous instructions
+(defvinstr "Phi"
+  (type type-ref))
