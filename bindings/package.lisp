@@ -49,4 +49,10 @@
    #:build-sub
    #:build-mul
    #:build-udiv
-   #:build-sdiv))
+   #:build-sdiv
+   #:initialize-native-target
+   #:get-first-basic-block
+   #:get-last-basic-block
+   #:get-next-basic-block
+   #:get-previous-basic-block
+   #:get-entry-basic-block))

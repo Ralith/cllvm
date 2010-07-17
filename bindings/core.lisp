@@ -61,6 +61,17 @@
 (defcfun (get-basic-block-parent "LLVMGetBasicBlockParent") value-ref
   (basic-block basic-block-ref))
 
+(defcfun (get-first-basic-block "LLVMGetFirstBasicBlock") basic-block-ref
+  (function value-ref))
+(defcfun (get-last-basic-block "LLVMGetLastBasicBlock") basic-block-ref
+  (function value-ref))
+(defcfun (get-next-basic-block "LLVMGetNextBasicBlock") basic-block-ref
+  (basic-block basic-block-ref))
+(defcfun (get-previous-basic-block "LLVMGetPreviousBasicBlock") basic-block-ref
+  (basic-block basic-block-ref))
+(defcfun (get-entry-basic-block "LLVMGetEntryBasicBlock") basic-block-ref
+  (function value-ref))
+
 (defcfun (append-basic-block "LLVMAppendBasicBlock") basic-block-ref
   (function value-ref)
   (name :string))
