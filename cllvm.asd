@@ -5,7 +5,8 @@
   :components
   ((:module "bindings"
     :serial t
-    :components ((:file "package")))
+    :components ((:file "package")
+                 (:file "library")))
    (:module "wrapper"
     :serial t
     :components ((:file "package")))))
