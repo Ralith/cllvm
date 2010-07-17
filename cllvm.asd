@@ -9,7 +9,8 @@
                  (:file "library")
                  (:file "core")
                  (:file "analysis")
-                 (:file "execution-engine")))
+                 (:file "execution-engine")
+                 (:file "target")))
    (:module "wrapper"
     :serial t
     :components ((:file "package")))))
