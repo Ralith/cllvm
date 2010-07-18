@@ -14,6 +14,7 @@
    #:verifier-failure-action
    #:verify-module
    #:module-create-with-name
+   #:dump-module
    #:append-basic-block
    #:insert-basic-block
    #:delete-basic-block
@@ -65,4 +66,9 @@
    #:real-predicate
    #:build-icmp
    #:build-fcmp
-   #:build-phi))
+   #:build-phi
+   #:build-call
+   #:set-function-call-conv
+   #:function-type
+   #:get-value-name
+   #:set-value-name))

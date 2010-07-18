@@ -51,6 +51,13 @@
   :inline-hint-attribute
   :stack-alignment)
 
+(defcenum call-conv
+  (:c 0)
+  (:fast 8)
+  (:cold 9)
+  (:x86-stdcall 64)
+  (:x86-fastcall 65))
+
 (defcenum int-predicate
   (:eq 32)
   :ne
@@ -87,6 +94,28 @@
 (defcfun (dispose-module "LLVMDisposeModule") :void
   (module module-ref))
 
+(defcfun (dump-module "LLVMDumpModule") :void
+  (module module-ref))
+
+;;;; Types
+;;; Operations on integer types
+(defcfun (int1-type "LLVMInt1Type") type-ref)
+(defcfun (int8-type "LLVMInt8Type") type-ref)
+(defcfun (int16-type "LLVMInt16Type") type-ref)
+(defcfun (int32-type "LLVMInt32Type") type-ref)
+(defcfun (int64-type "LLVMInt64Type") type-ref)
+(defcfun (int-type "LLVMIntType") type-ref
+  (width :unsigned-int))
+(defcfun (get-int-type-width "LLVMGetIntTypeWidth") type-ref
+  (int-type type-ref))
+
+;;; Operations on function types
+(defcfun (function-type "LLVMFunctionType") type-ref
+  (return-type type-ref)
+  (param-types (:pointer type-ref))
+  (param-count :unsigned-int)
+  (is-var-arg :boolean))
+
 ;;; Operations on all values
 (defcfun (get-value-name "LLVMGetValueName") :string
   (value value-ref))
@@ -100,22 +129,15 @@
   (value :unsigned-long-long)
   (sign-extend :boolean))
 
-;;; Operations on integer types
-(defcfun (int1-type "LLVMInt1Type") type-ref)
-(defcfun (int8-type "LLVMInt8Type") type-ref)
-(defcfun (int16-type "LLVMInt16Type") type-ref)
-(defcfun (int32-type "LLVMInt32Type") type-ref)
-(defcfun (int64-type "LLVMInt64Type") type-ref)
-(defcfun (int-type "LLVMIntType") type-ref
-  (width :unsigned-int))
-(defcfun (get-int-type-width "LLVMGetIntTypeWidth") type-ref
-  (int-type type-ref))
-
 ;;; Operations on functions
 (defcfun (add-function "LLVMAddFunction") value-ref
   (module module-ref)
   (name :string)
   (type type-ref))
+
+(defcfun (set-function-call-conv "LLVMSetFunctionCallConv") :void
+  (function value-ref)
+  (call-conv call-conv))
 
 ;;; Operations on parameters
 (defcfun (get-param "LLVMGetParam") value-ref
@@ -258,3 +280,7 @@
 ;;; Miscellaneous instructions
 (defvinstr "Phi"
   (type type-ref))
+(defvinstr "Call"
+  (function value-ref)
+  (arguments (:pointer value-ref))
+  (arguments-length :unsigned-int))
