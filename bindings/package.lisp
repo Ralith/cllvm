@@ -82,4 +82,8 @@
    #:dispose-module-provider
    #:create-pass-manager
    #:create-function-pass-manager-for-module
-   #:run-pass-manager))
+   #:run-pass-manager
+   #:create-generic-value-of-int
+   #:create-generic-value-of-pointer
+   #:create-generic-value-of-Float
+   #:dispose-generic-value))

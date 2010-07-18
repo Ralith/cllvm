@@ -6,6 +6,22 @@
 (defcfun (link-in-jit "LLVMLinkInJIT") :void)
 (defcfun (link-in-interpreter "LLVMLinkInInterpreter") :void)
 
+;;; Operations on generic values
+(defcfun (create-generic-value-of-int "LLVMCreateGenericValueOfInt") generic-value-ref
+  (type type-ref)
+  (value :unsigned-long-long)
+  (is-signed :boolean))
+
+(defcfun (create-generic-value-of-pointer "LLVMCreateGenericValueOfPointer") generic-value-ref
+  (pointer :pointer))
+
+(defcfun (create-generic-value-of-Float "LLVMCreateGenericValueOfFloat") generic-value-ref
+  (type type-ref)
+  (value :double))
+
+(defcfun (dispose-generic-value "LLVMDisposeGenericValue") :void
+  (generic-value generic-value-ref))
+
 ;;; Operations on execution engines
 (defcfun (create-execution-engine-for-module "LLVMCreateExecutionEngineForModule") :boolean
   (out-execution-engine (:pointer execution-engine-ref))
