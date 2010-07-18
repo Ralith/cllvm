@@ -277,3 +277,12 @@
   (module module-ref))
 (defcfun (dispose-module-provider "LLVMDisposeModuleProvider") :void
   (module-provider module-provider-ref))
+
+;;;; Pass Managers
+(defcfun (create-pass-manager "LLVMCreatePassManager") pass-manager-ref)
+(defcfun (create-function-pass-manager-for-module "LLVMCreateFunctionPassManagerForModule") pass-manager-ref
+  (module module-ref))
+
+(defcfun (run-pass-manager "LLVMRunPassManager") :boolean
+  (pass-manager pass-manager-ref)
+  (module module-ref))

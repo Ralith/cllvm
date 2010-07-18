@@ -79,4 +79,7 @@
    #:create-jit-compiler-for-module
    #:dispose-message
    #:create-module-provider-for-existing-module
-   #:dispose-module-provider))
+   #:dispose-module-provider
+   #:create-pass-manager
+   #:create-function-pass-manager-for-module
+   #:run-pass-manager))
