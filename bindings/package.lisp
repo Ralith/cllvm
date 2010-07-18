@@ -61,6 +61,8 @@
    #:memory-buffer-ref
    #:pass-manager-ref
    #:use-ref
+   #:generic-value-ref
+   #:execution-engine-ref
    #:attribute
    #:int-predicate
    #:real-predicate
