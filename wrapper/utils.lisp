@@ -1,20 +1,20 @@
 (in-package #:llvm-wrapper)
+(declaim (optimize (debug 3)))
 
 (defmacro with-double-ptr ((inner outer c-type) &body body)
-  "Creates a pointer INNER (ostensibly of type C-TYPE) which is addressed by OUTER.  Only OUTER is deallocated.
-This is intended for use with functions which set take a pointer to a pointer and set the inner pointer's value to the address of some C-TYPE.  Note that no typechecking is done."
-  `(let ((,inner (make-pointer 0)))
-     (with-foreign-object (,outer '(:pointer ,c-type))
-       (setf (mem-ref ,outer :pointer) ,inner)
-       ,@body)))
+  "Creates a pointer INNER (ostensibly of type C-TYPE) which is addressed by OUTER."
+  `(with-foreign-objects ((,inner ',c-type)
+                          (,outer '(:pointer ,c-type)))
+     (setf (mem-ref ,outer :pointer) ,inner)
+     ,@body))
 
 (defmacro lispifying-errors (function-call)
   (let ((error-name (gensym "ERROR"))
         (error-addr-name (gensym "ERROR-ADDRESS")))
     `(with-double-ptr (,error-name ,error-addr-name (:pointer :char))
-       (unwind-protect (when (,@function-call ,error-addr-name)
-                         (error (foreign-string-to-lisp ,error-name)))
-         (%llvm:dispose-message ,error-name)))))
+       (when (,@function-call ,error-addr-name)
+         (error (unwind-protect (foreign-string-to-lisp ,error-name)
+                  (%llvm:dispose-message ,error-name)))))))
 
 (defmacro with-pointers-to-list ((array length list) &body body)
   (let ((list-name (gensym "LIST")))

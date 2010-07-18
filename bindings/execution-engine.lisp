@@ -1,4 +1,5 @@
 (in-package #:llvm-bindings)
+(declaim (optimize (debug 3)))
 
 (defctype generic-value-ref :pointer)
 (defctype execution-engine-ref :pointer)
@@ -50,6 +51,7 @@
 (defcfun (create-jit-compiler-for-module "LLVMCreateJITCompilerForModule") :boolean
   (out-jit (:pointer execution-engine-ref))
   (module module-ref)
+  (optimization-level :unsigned-int)
   (out-error (:pointer (:pointer :char))))
 
 (defcfun (dispose-execution-engine "LLVMDisposeExecutionEngine") :void
