@@ -86,4 +86,9 @@
    #:create-generic-value-of-int
    #:create-generic-value-of-pointer
    #:create-generic-value-of-Float
-   #:dispose-generic-value))
+   #:dispose-generic-value
+   #:dispose-execution-engine
+   #:run-static-constructors
+   #:run-static-destructors
+   #:run-function-as-main
+   #:run-function))

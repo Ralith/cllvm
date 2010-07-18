@@ -37,3 +37,25 @@
   (out-jit (:pointer execution-engine-ref))
   (module module-ref)
   (out-error (:pointer (:pointer :char))))
+
+(defcfun (dispose-execution-engine "LLVMDisposeExecutionEngine") :void
+  (execution-engine execution-engine-ref))
+
+(defcfun (run-static-constructors "LLVMRunStaticConstructors") :void
+  (execution-engine execution-engine-ref))
+
+(defcfun (run-static-destructors "LLVMRunStaticDestructors") :void
+  (execution-engine execution-engine-ref))
+
+(defcfun (run-function-as-main "LLVMRunFunctionAsMain") :int
+  (execution-engine execution-engine-ref)
+  (function value-ref)
+  (argc :unsigned-int)
+  (argv (:pointer (:pointer :char)))
+  (env (:pointer (:pointer :char))))
+
+(defcfun (run-function "LLVMRunFunction") generic-value-ref
+  (execution-engine execution-engine-ref)
+  (function value-ref)
+  (argument-count :unsigned-int)
+  (arguments (:pointer generic-value-ref)))
