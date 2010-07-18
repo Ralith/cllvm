@@ -88,6 +88,12 @@
   :une
   :true)
 
+;;;; Error handling
+(defcfun (dispose-message "LLVMDisposeMessage") :void
+  (message (:pointer :char)))
+
+;;;; Modules
+
 (defcfun (module-create-with-name "LLVMModuleCreateWithName") module-ref
   (name :string))
 

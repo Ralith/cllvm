@@ -71,4 +71,8 @@
    #:set-function-call-conv
    #:function-type
    #:get-value-name
-   #:set-value-name))
+   #:set-value-name
+   #:create-execution-engine-for-module
+   #:create-interpreter-for-module
+   #:create-jit-compiler-for-module
+   #:dispose-message))

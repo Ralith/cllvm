@@ -1,9 +1,9 @@
 (in-package #:llvm-bindings)
 
 (defcenum verifier-failure-action
-  :abort-process-action
-  :print-message-action
-  :return-status-action)
+  :abort-process
+  :print-message
+  :return-status)
 
 (defcfun (verify-module "LLVMVerifyModule") :boolean
   (module module-ref)
