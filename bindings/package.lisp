@@ -77,4 +77,6 @@
    #:create-execution-engine-for-module
    #:create-interpreter-for-module
    #:create-jit-compiler-for-module
-   #:dispose-message))
+   #:dispose-message
+   #:create-module-provider-for-existing-module
+   #:dispose-module-provider))

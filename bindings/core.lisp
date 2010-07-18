@@ -271,3 +271,9 @@
   (function value-ref)
   (arguments (:pointer value-ref))
   (arguments-length :unsigned-int))
+
+;;;; Module providers
+(defcfun (create-module-provider-for-existing-module "LLVMCreateModuleProviderForExistingModule") module-provider-ref
+  (module module-ref))
+(defcfun (dispose-module-provider "LLVMDisposeModuleProvider") :void
+  (module-provider module-provider-ref))
