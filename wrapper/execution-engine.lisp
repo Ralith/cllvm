@@ -1,10 +1,16 @@
 (in-package #:llvm-wrapper)
 
-(defun create-execution-engine-for-module (out-execution-engine module)
-  (lispifying-errors (%llvm:create-execution-engine-for-module out-execution-engine module)))
+(defun create-execution-engine-for-module (module)
+  (with-double-ptr (ret address %llvm:execution-engine-ref)
+    (lispifying-errors (%llvm:create-execution-engine-for-module address module))
+    ret))
 
-(defun create-interpreter-for-module (out-interpreter module)
-  (lispifying-errors (%llvm:create-interpreter-for-module out-interpreter module)))
+(defun create-interpreter-for-module (module)
+  (with-double-ptr (ret address %llvm:execution-engine-ref)
+    (lispifying-errors (%llvm:create-interpreter-for-module address module))
+    ret))
 
-(defun create-jit-compiler-for-module (out-jit module)
-  (lispifying-errors (%llvm:create-jit-compiler-for-module out-jit module)))
+(defun create-jit-compiler-for-module (module)
+  (with-double-ptr (ret address %llvm:execution-engine-ref)
+    (lispifying-errors (%llvm:create-jit-compiler-for-module address module))
+    ret))
