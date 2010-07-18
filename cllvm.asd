@@ -2,6 +2,7 @@
   :author "Benjamin Saunders"
   :depends-on (:cffi)
   :version "0.1"
+  :serial t
   :components
   ((:module "bindings"
     :serial t
