@@ -85,7 +85,11 @@
    #:run-pass-manager
    #:create-generic-value-of-int
    #:create-generic-value-of-pointer
-   #:create-generic-value-of-Float
+   #:create-generic-value-of-float
+   #:generic-value-int-width
+   #:generic-value-to-int
+   #:generic-value-to-pointer
+   #:generic-value-to-float
    #:dispose-generic-value
    #:dispose-execution-engine
    #:run-static-constructors

@@ -15,9 +15,23 @@
 (defcfun (create-generic-value-of-pointer "LLVMCreateGenericValueOfPointer") generic-value-ref
   (pointer :pointer))
 
-(defcfun (create-generic-value-of-Float "LLVMCreateGenericValueOfFloat") generic-value-ref
+(defcfun (create-generic-value-of-float "LLVMCreateGenericValueOfFloat") generic-value-ref
   (type type-ref)
   (value :double))
+
+(defcfun (generic-value-int-width "LLVMGenericValueIntWidth") :unsigned-int
+  (generic-value generic-value-ref))
+
+(defcfun (generic-value-to-int "LLVMGenericValueToInt") :unsigned-long-long
+  (generic-value generic-value-ref)
+  (is-signed :boolean))
+
+(defcfun (generic-value-to-pointer "LLVMGenericValueToPointer") :pointer
+  (generic-value generic-value-ref))
+
+(defcfun (generic-value-to-float "LLVMGenericValueToFloat") :double
+  (type type-ref)
+  (generic-value generic-value-ref))
 
 (defcfun (dispose-generic-value "LLVMDisposeGenericValue") :void
   (generic-value generic-value-ref))
