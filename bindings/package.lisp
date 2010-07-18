@@ -95,4 +95,10 @@
    #:run-static-constructors
    #:run-static-destructors
    #:run-function-as-main
-   #:run-function))
+   #:run-function
+   #:get-named-function
+   #:get-first-function
+   #:get-last-function
+   #:get-next-function
+   #:get-previous-function
+   #:delete-function))

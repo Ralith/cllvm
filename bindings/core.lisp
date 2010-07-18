@@ -140,6 +140,19 @@
   (module module-ref)
   (name :string)
   (type type-ref))
+(defcfun (get-named-function "LLVMGetNamedFunction") value-ref
+  (module module-ref)
+  (name :string))
+(defcfun (get-first-function "LLVMGetFirstFunction") value-ref
+  (module module-ref))
+(defcfun (get-last-function "LLVMGetLastFunction") value-ref
+  (module module-ref))
+(defcfun (get-next-function "LLVMGetNextFunction") value-ref
+  (function value-ref))
+(defcfun (get-previous-function "LLVMGetPreviousFunction") value-ref
+  (function value-ref))
+(defcfun (delete-function "LLVMDeleteFunction") :void
+  (function value-ref))
 
 (defcfun (set-function-call-conv "LLVMSetFunctionCallConv") :void
   (function value-ref)
