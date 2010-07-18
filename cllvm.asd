@@ -13,4 +13,8 @@
                  (:file "target")))
    (:module "wrapper"
     :serial t
-    :components ((:file "package")))))
+    :components ((:file "package")
+                 (:file "utils")
+                 (:file "core")
+                 (:file "analysis")
+                 (:file "execution-engine")))))
