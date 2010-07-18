@@ -3,10 +3,10 @@
 
 (defmacro with-double-ptr ((inner outer c-type) &body body)
   "Creates a pointer INNER (ostensibly of type C-TYPE) which is addressed by OUTER."
-  `(with-foreign-objects ((,inner ',c-type)
-                          (,outer '(:pointer ,c-type)))
-     (setf (mem-ref ,outer :pointer) ,inner)
-     ,@body))
+  `(with-foreign-objects ((,outer '(:pointer ,c-type)))
+     (setf (mem-ref ,outer :pointer) (null-pointer))
+     (symbol-macrolet ((,inner (mem-ref ,outer :pointer)))
+       ,@body)))
 
 (defmacro lispifying-errors (function-call)
   (let ((error-name (gensym "ERROR"))
