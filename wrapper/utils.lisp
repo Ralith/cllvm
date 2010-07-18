@@ -17,7 +17,7 @@ This is intended for use with functions which set take a pointer to a pointer an
          (%llvm:dispose-message ,error-name)))))
 
 (defmacro with-pointers-to-list ((array length list) &body body)
-  (let ((list-name (gensym "list")))
+  (let ((list-name (gensym "LIST")))
     `(let* ((,list-name ,list)
             (,length (length ,list-name)))
        (with-foreign-object (,array :pointer ,length)
