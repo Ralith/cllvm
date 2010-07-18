@@ -7,6 +7,7 @@
     :serial t
     :components ((:file "package")
                  (:file "library")
+                 (:file "utils")
                  (:file "core")
                  (:file "analysis")
                  (:file "execution-engine")
