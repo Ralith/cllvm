@@ -1,5 +1,6 @@
 (defpackage #:llvm-bindings (:nicknames #:%llvm)
   (:use #:common-lisp #:cffi)
+  (:shadow #:type-of)
   (:export
    #:context-ref
    #:module-ref
@@ -105,4 +106,10 @@
    #:move-basic-block-before
    #:move-basic-block-after
    #:recompile-and-relink-function
-   #:verify-function))
+   #:verify-function
+   #:type-of
+   #:dump-value
+   #:replace-all-uses-with
+   #:has-metadata
+   #:get-metadata
+   #:set-metadata))

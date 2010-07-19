@@ -123,11 +123,27 @@
   (is-var-arg :boolean))
 
 ;;; Operations on all values
+(defcfun (type-of "LLVMTypeOf") type-ref
+  (value value-ref))
 (defcfun (get-value-name "LLVMGetValueName") :string
   (value value-ref))
 (defcfun (set-value-name "LLVMSetValueName") :void
   (value value-ref)
   (name :string))
+(defcfun (dump-value "LLVMDumpValue") :void
+  (value value-ref))
+(defcfun (replace-all-uses-with "LLVMReplaceAllUsesWith") :void
+  (old-value value-ref)
+  (new-value value-ref))
+(defcfun (has-metadata "LLVMHasMetadata") :boolean
+  (instruction value-ref))
+(defcfun (get-metadata "LLVMGetMetadata") value-ref
+  (instruction value-ref)
+  (kind :unsigned-int))
+(defcfun (set-metadata "LLVMSetMetadata") :void
+  (instruction value-ref)
+  (kind :unsigned-int)
+  (metadata value-ref))
 
 ;;; Operations on scalar constants
 (defcfun (const-int "LLVMConstInt") value-ref
