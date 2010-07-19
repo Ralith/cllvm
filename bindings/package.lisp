@@ -101,4 +101,7 @@
    #:get-last-function
    #:get-next-function
    #:get-previous-function
-   #:delete-function))
+   #:delete-function
+   #:move-basic-block-before
+   #:move-basic-block-after
+   #:recompile-and-relink-function))

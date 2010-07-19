@@ -188,6 +188,12 @@
 
 (defcfun (delete-basic-block "LLVMDeleteBasicBlock") :void
   (basic-block basic-block-ref))
+(defcfun (move-basic-block-before "LLVMMoveBasicBlockBefore") :void
+  (basic-block basic-block-ref)
+  (before-basic-block basic-block-ref))
+(defcfun (move-basic-block-after "LLVMMoveBasicBlockAfter") :void
+  (basic-block basic-block-ref)
+  (after-basic-block basic-block-ref))
 
 ;;; Operations on phi nodes
 (defcfun (add-incoming "LLVMAddIncoming") :void

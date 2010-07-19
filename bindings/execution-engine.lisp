@@ -75,3 +75,7 @@
   (function value-ref)
   (argument-count :unsigned-int)
   (arguments (:pointer generic-value-ref)))
+
+(defcfun (recompile-and-relink-function "LLVMRecompileAndRelinkFunction") :pointer
+  (execution-engine execution-engine-ref)
+  (function value-ref))
