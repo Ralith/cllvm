@@ -9,3 +9,7 @@
   (module module-ref)
   (action verifier-failure-action)
   (out-message (:pointer (:pointer :char))))
+
+(defcfun (verify-function "LLVMVerifyFunction") :boolean
+  (function value-ref)
+  (action verifier-failure-action))

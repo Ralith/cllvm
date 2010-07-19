@@ -104,4 +104,5 @@
    #:delete-function
    #:move-basic-block-before
    #:move-basic-block-after
-   #:recompile-and-relink-function))
+   #:recompile-and-relink-function
+   #:verify-function))
