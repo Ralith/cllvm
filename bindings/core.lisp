@@ -145,6 +145,16 @@
   (kind :unsigned-int)
   (metadata value-ref))
 
+;;; Operations on Uses
+(defcfun (get-first-use "LLVMGetFirstUse") use-ref
+  (value value-ref))
+(defcfun (get-next-use "LLVMGetNextUse") use-ref
+  (use use-ref))
+(defcfun (get-user "LLVMGetUser") value-ref
+  (use use-ref))
+(defcfun (get-used-value "LLVMGetUsedValue") value-ref
+  (use use-ref))
+
 ;;; Operations on scalar constants
 (defcfun (const-int "LLVMConstInt") value-ref
   (integer-type type-ref)

@@ -119,4 +119,8 @@
    #:replace-all-uses-with
    #:has-metadata
    #:get-metadata
-   #:set-metadata))
+   #:set-metadata
+   #:get-first-use
+   #:get-next-use
+   #:get-user
+   #:get-used-value))
