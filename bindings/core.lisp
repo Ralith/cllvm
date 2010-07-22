@@ -284,6 +284,25 @@
   (lhs value-ref)
   (rhs value-ref))
 
+;;; Memory
+(defvinstr "Malloc"
+  (type type-ref))
+(defvinstr "ArrayMalloc"
+  (type type-ref)
+  (value value-ref))
+(defvinstr "Alloca"
+  (type type-ref))
+(defvinstr "ArrayAlloca"
+  (type type-ref)
+  (value value-ref))
+(definstr "Free"
+  (pointer value-ref))
+(defvinstr "Load"
+  (pointer value-ref))
+(definstr "Store"
+  (value value-ref)
+  (pointer value-ref))
+
 ;;; Casts
 (defvinstr "Trunc"
   (value value-ref)

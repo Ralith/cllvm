@@ -71,6 +71,13 @@
    #:build-fcmp
    #:build-phi
    #:build-call
+   #:build-malloc
+   #:build-array-malloc
+   #:build-alloca
+   #:build-array-alloca
+   #:build-free
+   #:build-load
+   #:build-store
    #:set-function-call-conv
    #:function-type
    #:get-value-name
