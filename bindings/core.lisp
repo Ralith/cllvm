@@ -51,6 +51,101 @@
   :inline-hint-attribute
   :stack-alignment)
 
+(defcenum opcode
+  (:ret 1)
+  (:br 2)
+  (:switch 3)
+  (:indirect-br 4)
+  (:invoke 5)
+  (:unwind 6)
+  (:unreachable 7)
+  (:add 8)
+  (:fadd 9)
+  (:sub 10)
+  (:fsub 11)
+  (:mul 12)
+  (:fmul 13)
+  (:udiv 14)
+  (:sdiv 15)
+  (:fdiv 16)
+  (:urem 17)
+  (:srem 18)
+  (:frem 19)
+  (:shl 20)
+  (:lshr 21)
+  (:ashr 22)
+  (:and 23)
+  (:or 24)
+  (:xor 25)
+  (:alloca 26)
+  (:load 27)
+  (:store 28)
+  (:getelementptr 29)
+  (:trunc 30)
+  (:zext 31)
+  (:sext 32)
+  (:fptoui 33)
+  (:fptosi 34)
+  (:uitofp 35)
+  (:sitofp 36)
+  (:fptrunc 37)
+  (:fpext 38)
+  (:ptrtoint 39)
+  (:inttoptr 40)
+  (:bitcast 41)
+  (:icmp 42)
+  (:fcmp 43)
+  (:phi 44)
+  (:call 45)
+  (:select 46)
+  (:vaarg 49)
+  (:extractelement 50)
+  (:insertelement 51)
+  (:shufflevector 52)
+  (:extractvalue 53)
+  (:insertvalue 54))
+
+(defcenum type-kind
+  :void
+  :float
+  :double
+  :x86-fp80t
+  :fp128
+  :ppc-fp128
+  :label
+  :integer
+  :function
+  :struct
+  :array
+  :pointer
+  :opaque
+  :vector
+  :metadata
+  :union)
+
+(defcenum linkage
+  :external
+  :available-externally
+  :link-once-any
+  :link-once-odr
+  :link-weak-any
+  :link-weak-odr
+  :appending
+  :internal
+  :private
+  :dll-import
+  :dll-export
+  :external-weak
+  :ghost
+  :common
+  :linker-private
+  :linker-private-weak)
+
+(defcenum visibility
+  :default
+  :hidden
+  :protected)
+
 (defcenum call-conv
   (:c 0)
   (:fast 8)
@@ -160,6 +255,38 @@
   (integer-type type-ref)
   (value :unsigned-long-long)
   (sign-extend :boolean))
+
+;;; Operations on global variables, functions, and aliases (globals)
+(defcfun (get-global-parent "LLVMGetGlobalParent") module-ref
+  (global value-ref))
+(defcfun (is-declaration "LLVMIsDeclaration") :boolean
+  (global value-ref))
+(defcfun (get-linkage "LLVMGetLinkage") linkage
+  (global value-ref))
+(defcfun (set-linkage "LLVMSetLinkage") :void
+  (global value-ref)
+  (linkage linkage))
+(defcfun (get-section "LLVMGetSection") :string
+  (global value-ref))
+(defcfun (set-section "LLVMSetSection") :void
+  (global value-ref)
+  (section :string))
+(defcfun (get-visibility "LLVMGetVisibility") visibility
+  (global value-ref))
+(defcfun (set-visibility "LLVMSetVisibility") :void
+  (global value-ref)
+  (visibility visibility))
+(defcfun (get-alignment "LLVMGetAlignment") :unsigned-int
+  (global value-ref))
+(defcfun (set-alignment "LLVMSetAlignment") :void
+  (global value-ref)
+  (bytes :unsigned-int))
+
+;;; Operations on global variables
+(defcfun (add-global "LLVMAddGlobal") value-ref
+  (module module-ref)
+  (type type-ref)
+  (name :string))
 
 ;;; Operations on functions
 (defcfun (add-function "LLVMAddFunction") value-ref

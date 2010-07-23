@@ -65,6 +65,11 @@
    #:generic-value-ref
    #:execution-engine-ref
    #:attribute
+   #:visibility
+   #:call-conv
+   #:linkage
+   #:type-kind
+   #:opcode
    #:int-predicate
    #:real-predicate
    #:build-icmp
@@ -123,4 +128,12 @@
    #:get-first-use
    #:get-next-use
    #:get-user
-   #:get-used-value))
+   #:get-used-value
+   #:get-global-parent
+   #:is-declaration
+   #:get-linkage
+   #:set-linkage
+   #:get-section
+   #:set-section
+   #:get-visibility
+   #:set-visibility))
