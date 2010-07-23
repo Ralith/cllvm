@@ -136,4 +136,5 @@
    #:get-section
    #:set-section
    #:get-visibility
-   #:set-visibility))
+   #:set-visibility
+   #:add-global))
