@@ -137,4 +137,7 @@
    #:set-section
    #:get-visibility
    #:set-visibility
-   #:add-global))
+   #:add-global
+   #:delete-global
+   #:get-initializer
+   #:set-initializer))

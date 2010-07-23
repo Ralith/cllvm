@@ -288,6 +288,14 @@
   (type type-ref)
   (name :string))
 
+(defcfun (delete-global "LLVMDeleteGlobal") :void
+  (global-variable value-ref))
+(defcfun (get-initializer "LLVMGetInitializer") value-ref
+  (global-variable value-ref))
+(defcfun (set-initializer "LLVMSetInitializer") :void
+  (global-variable value-ref)
+  (constant-value value-ref))
+
 ;;; Operations on functions
 (defcfun (add-function "LLVMAddFunction") value-ref
   (module module-ref)
