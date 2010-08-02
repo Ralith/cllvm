@@ -217,6 +217,12 @@
   (param-count :unsigned-int)
   (is-var-arg :boolean))
 
+;;; Operations on struct types
+(defcfun (struct-type "LLVMStructType") type-ref
+  (element-types type-ref)
+  (element-count :unsigned-int)
+  (packed :boolean))
+
 ;;; Operations on all values
 (defcfun (type-of "LLVMTypeOf") type-ref
   (value value-ref))

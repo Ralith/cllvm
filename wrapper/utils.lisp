@@ -16,7 +16,7 @@
          (error (unwind-protect (foreign-string-to-lisp ,error-name)
                   (%llvm:dispose-message ,error-name)))))))
 
-(defmacro with-pointers-to-list ((array length list) &body body)
+(defmacro with-array-of-list ((array length list) &body body)
   (let ((list-name (gensym "LIST")))
     `(let* ((,list-name ,list)
             (,length (length ,list-name)))

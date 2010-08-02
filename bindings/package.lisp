@@ -140,4 +140,5 @@
    #:add-global
    #:delete-global
    #:get-initializer
-   #:set-initializer))
+   #:set-initializer
+   #:struct-type))

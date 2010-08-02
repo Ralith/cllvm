@@ -1,8 +1,12 @@
 (in-package #:llvm-wrapper)
 
 (defun function-type (return-type param-types &optional is-var-arg)
-  (with-pointers-to-list (p-t-array length param-types)
+  (with-array-of-list (p-t-array length param-types)
     (%llvm:function-type return-type p-t-array length is-var-arg)))
+
+(defun struct-type (element-types &optional packed)
+  (with-array-of-list (e-t-array length element-types)
+    (%llvm:struct-type e-t-array length packed)))
 
 (defun add-incoming (phi-node value block)
   (with-foreign-objects ((value-addr :pointer)
@@ -13,5 +17,5 @@
 
 (wrap-vinstr phi (type))
 (defun build-call (builder function arguments &optional (name ""))
-  (with-pointers-to-list (arg-array length arguments)
+  (with-array-of-list (arg-array length arguments)
     (%llvm:build-call builder function arg-array length name)))
