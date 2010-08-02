@@ -8,4 +8,5 @@
    #:verify-module
    #:create-execution-engine-for-module
    #:create-interpreter-for-module
-   #:create-jit-compiler-for-module))
+   #:create-jit-compiler-for-module
+   #:struct-type))
