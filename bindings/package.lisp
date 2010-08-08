@@ -157,4 +157,5 @@
    #:is-constant
    #:is-null
    #:is-undef
-   #:const-pointer-null))
+   #:const-pointer-null
+   #:size-of))

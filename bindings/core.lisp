@@ -298,6 +298,8 @@
   (sign-extend :boolean))
 
 ;;; Constant expressions
+(defcfun (size-of "LLVMSizeOf") value-ref
+  (type type-ref))
 (defcfun (const-gep "LLVMConstGep") value-ref
   (constant-value value-ref)
   (constant-indices (:pointer value-ref))
