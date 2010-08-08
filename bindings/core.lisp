@@ -223,6 +223,25 @@
   (element-count :unsigned-int)
   (packed :boolean))
 
+;;; Operations on array, pointer, and vector types (sequence types)
+(defcfun (array-type "LLVMArrayType") type-ref
+  (element-type type-ref)
+  (element-count :unsigned-int))
+(defcfun (pointer-type "LLVMPointerType") type-ref
+  (element-type type-ref)
+  (element-count :unsigned-int))
+(defcfun (vector-type "LLVMVectorType") type-ref
+  (element-type type-ref)
+  (element-count :unsigned-int))
+(defcfun (get-element-type "LLVMGetElementType") type-ref
+  (type type-ref))
+(defcfun (get-array-length "LLVMGetArrayLength") :unsigned-int
+  (array-type type-ref))
+(defcfun (get-pointer-address-space "LLVMGetPointerAddressSpace") :unsigned-int
+  (pointer-type type-ref))
+(defcfun (get-vector-size "LLVMGetVectorSize") :unsigned-int
+  (vector-type type-ref))
+
 ;;; Operations on all values
 (defcfun (type-of "LLVMTypeOf") type-ref
   (value value-ref))

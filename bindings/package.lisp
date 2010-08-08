@@ -142,4 +142,11 @@
    #:get-initializer
    #:set-initializer
    #:struct-type
-   #:const-gep))
+   #:const-gep
+   #:array-type
+   #:pointer-type
+   #:vector-type
+   #:get-element-type
+   #:get-array-length
+   #:get-pointer-address-space
+   #:get-vector-size))
