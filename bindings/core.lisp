@@ -262,6 +262,12 @@
   (value :unsigned-long-long)
   (sign-extend :boolean))
 
+;;; Operations on constants
+(defcfun (const-gep "LLVMConstGep") value-ref
+  (constant-value value-ref)
+  (constant-indices (:pointer value-ref))
+  (num-indices :unsigned-int))
+
 ;;; Operations on global variables, functions, and aliases (globals)
 (defcfun (get-global-parent "LLVMGetGlobalParent") module-ref
   (global value-ref))

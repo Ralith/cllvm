@@ -141,4 +141,5 @@
    #:delete-global
    #:get-initializer
    #:set-initializer
-   #:struct-type))
+   #:struct-type
+   #:const-gep))
