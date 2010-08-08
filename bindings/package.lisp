@@ -155,4 +155,5 @@
    #:get-undef
    #:is-constant
    #:is-null
-   #:is-undef))
+   #:is-undef
+   #:const-pointer-null))
