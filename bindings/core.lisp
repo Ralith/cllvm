@@ -496,9 +496,12 @@
   (pointer value-ref))
 
 ;;; Casts
-(defvinstr "Trunc"
-  (value value-ref)
-  (destination-type type-ref))
+(macrolet ((defcast (type)
+               `(defvinstr ,type
+                  (value value-ref)
+                  (destination-type type-ref))))
+  (defcast "Trunc")
+  (defcast "PtrToInt"))
 
 ;;; Comparisons
 (defvinstr "ICmp"

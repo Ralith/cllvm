@@ -23,6 +23,7 @@
    #:build-br
    #:build-cond-br
    #:build-trunc
+   #:build-ptr-to-int
    #:int1-type
    #:int8-type
    #:int16-type
