@@ -158,4 +158,9 @@
    #:is-null
    #:is-undef
    #:const-pointer-null
-   #:size-of))
+   #:size-of
+   #:get-instruction-parent
+   #:get-first-instruction
+   #:get-last-instruction
+   #:get-next-instruction
+   #:get-previous-instruction))

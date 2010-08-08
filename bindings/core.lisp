@@ -405,6 +405,18 @@
   (basic-block basic-block-ref)
   (after-basic-block basic-block-ref))
 
+;;; Operations on instructions
+(defcfun (get-instruction-parent "LLVMGetInstructionParent") basic-block-ref
+  (instruction value-ref))
+(defcfun (get-first-instruction "LLVMGetFirstInstruction") value-ref
+  (basic-block basic-block-ref))
+(defcfun (get-last-instruction "LLVMGetLastInstruction") value-ref
+  (basic-block basic-block-ref))
+(defcfun (get-next-instruction "LLVMGetNextInstruction") value-ref
+  (basic-block basic-block-ref))
+(defcfun (get-previous-instruction "LLVMGetPreviousInstruction") value-ref
+  (basic-block basic-block-ref))
+
 ;;; Operations on phi nodes
 (defcfun (add-incoming "LLVMAddIncoming") :void
   (phi-node value-ref)
