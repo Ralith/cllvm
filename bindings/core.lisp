@@ -275,13 +275,29 @@
 (defcfun (get-used-value "LLVMGetUsedValue") value-ref
   (use use-ref))
 
+;;; Operations on constants of any type
+(defcfun (const-null "LLVMConstNull") value-ref
+  (type type-ref))
+(defcfun (const-all-ones "LLVMConstAllOnes") value-ref
+  (type type-ref))
+(defcfun (get-undef "LLVMGetUndef") value-ref
+  (type type-ref))
+(defcfun (is-constant "LLVMIsConstant") :boolean
+  (value value-ref))
+(defcfun (is-null "LLVMIsNull") :boolean
+  (value value-ref))
+(defcfun (is-undef "LLVMIsUndef") :boolean
+  (value value-ref))
+(defcfun (const-pointer-null "LLVMConstPointerNull") value-ref
+  (type type-ref))
+
 ;;; Operations on scalar constants
 (defcfun (const-int "LLVMConstInt") value-ref
   (integer-type type-ref)
   (value :unsigned-long-long)
   (sign-extend :boolean))
 
-;;; Operations on constants
+;;; Constant expressions
 (defcfun (const-gep "LLVMConstGep") value-ref
   (constant-value value-ref)
   (constant-indices (:pointer value-ref))

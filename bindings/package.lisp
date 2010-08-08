@@ -149,4 +149,10 @@
    #:get-element-type
    #:get-array-length
    #:get-pointer-address-space
-   #:get-vector-size))
+   #:get-vector-size
+   #:const-null
+   #:const-all-ones
+   #:get-undef
+   #:is-constant
+   #:is-null
+   #:is-undef))
