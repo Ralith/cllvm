@@ -163,4 +163,6 @@
    #:get-first-instruction
    #:get-last-instruction
    #:get-next-instruction
-   #:get-previous-instruction))
+   #:get-previous-instruction
+   #:delete-instruction
+   #:delete-function-body))

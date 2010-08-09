@@ -363,6 +363,8 @@
   (function value-ref))
 (defcfun (delete-function "LLVMDeleteFunction") :void
   (function value-ref))
+(defcfun (delete-function-body "LLVMDeleteFunctionBody") :void
+  (function value-ref))
 
 (defcfun (set-function-call-conv "LLVMSetFunctionCallConv") :void
   (function value-ref)
@@ -415,6 +417,8 @@
 (defcfun (get-next-instruction "LLVMGetNextInstruction") value-ref
   (instruction value-ref))
 (defcfun (get-previous-instruction "LLVMGetPreviousInstruction") value-ref
+  (instruction value-ref))
+(defcfun (delete-instruction "LLVMDeleteInstruction") :void
   (instruction value-ref))
 
 ;;; Operations on phi nodes
