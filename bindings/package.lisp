@@ -166,4 +166,5 @@
    #:get-next-instruction
    #:get-previous-instruction
    #:delete-instruction
-   #:delete-function-body))
+   #:delete-function-body
+   #:dump-type))

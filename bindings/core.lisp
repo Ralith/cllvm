@@ -199,6 +199,10 @@
   (module module-ref))
 
 ;;;; Types
+
+(defcfun (dump-type "LLVMDumpType") :void
+  (type type-ref))
+
 ;;; Operations on integer types
 (defcfun (int1-type "LLVMInt1Type") type-ref)
 (defcfun (int8-type "LLVMInt8Type") type-ref)
