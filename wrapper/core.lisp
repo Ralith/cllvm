@@ -8,9 +8,9 @@
   (with-array-of-list (e-t-array length element-types)
     (%llvm:struct-type e-t-array length packed)))
 
-(defun const-gep (constant-value indices)
+(defun const-gep (constant-pointer indices)
   (with-array-of-list (indice-array length indices)
-    (%llvm:const-gep constant-value indice-array length)))
+    (%llvm:const-gep constant-pointer indice-array length)))
 
 (defun build-gep (builder pointer indices &optional (name ""))
   (with-array-of-list (indice-array length indices)
