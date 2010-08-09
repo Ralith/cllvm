@@ -413,9 +413,9 @@
 (defcfun (get-last-instruction "LLVMGetLastInstruction") value-ref
   (basic-block basic-block-ref))
 (defcfun (get-next-instruction "LLVMGetNextInstruction") value-ref
-  (basic-block basic-block-ref))
+  (instruction value-ref))
 (defcfun (get-previous-instruction "LLVMGetPreviousInstruction") value-ref
-  (basic-block basic-block-ref))
+  (instruction value-ref))
 
 ;;; Operations on phi nodes
 (defcfun (add-incoming "LLVMAddIncoming") :void
