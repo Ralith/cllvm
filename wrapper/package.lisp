@@ -10,4 +10,5 @@
    #:create-interpreter-for-module
    #:create-jit-compiler-for-module
    #:struct-type
-   #:const-gep))
+   #:const-gep
+   #:build-gep))

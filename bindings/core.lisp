@@ -512,6 +512,10 @@
 (definstr "Store"
   (value value-ref)
   (pointer value-ref))
+(defvinstr "GEP"
+  (pointer value-ref)
+  (indices value-ref)
+  (num-indices :unsigned-int))
 
 ;;; Casts
 (macrolet ((defcast (type)

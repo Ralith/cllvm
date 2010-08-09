@@ -8,9 +8,13 @@
   (with-array-of-list (e-t-array length element-types)
     (%llvm:struct-type e-t-array length packed)))
 
-(defun const-gep (constant-value &rest indices)
+(defun const-gep (constant-value indices)
   (with-array-of-list (indice-array length indices)
     (%llvm:const-gep constant-value indice-array length)))
+
+(defun build-gep (builder pointer indices &optional (name ""))
+  (with-array-of-list (indice-array length indices)
+    (%llvm:build-gep builder pointer indice-array length name)))
 
 (defun add-incoming (phi-node value block)
   (with-foreign-objects ((value-addr :pointer)

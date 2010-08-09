@@ -84,6 +84,7 @@
    #:build-free
    #:build-load
    #:build-store
+   #:build-gep
    #:set-function-call-conv
    #:function-type
    #:get-value-name
