@@ -167,4 +167,7 @@
    #:get-previous-instruction
    #:delete-instruction
    #:delete-function-body
-   #:dump-type))
+   #:dump-type
+   #:dump-value-to-string
+   #:dump-type-to-string
+   #:dump-module-to-string))
