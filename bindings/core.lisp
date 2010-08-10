@@ -197,14 +197,14 @@
 
 (defcfun (dump-module "LLVMDumpModule") :void
   (module module-ref))
-(defcfun (dump-module-to-string "LLVMDumpModuleToString") :string
+(defcfun (dump-module-to-string "LLVMDumpModuleToString") freed-string
   (module module-ref))
 
 ;;;; Types
 
 (defcfun (dump-type "LLVMDumpType") :void
   (type type-ref))
-(defcfun (dump-type-to-string "LLVMDumpTypeToString") :string
+(defcfun (dump-type-to-string "LLVMDumpTypeToString") freed-string
   (type type-ref))
 
 ;;; Operations on integer types
@@ -260,7 +260,7 @@
   (name :string))
 (defcfun (dump-value "LLVMDumpValue") :void
   (value value-ref))
-(defcfun (dump-value-to-string "LLVMDumpValueToString") :string
+(defcfun (dump-value-to-string "LLVMDumpValueToString") freed-string
   (value value-ref))
 (defcfun (replace-all-uses-with "LLVMReplaceAllUsesWith") :void
   (old-value value-ref)
