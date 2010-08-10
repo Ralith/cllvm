@@ -241,6 +241,7 @@
 (defcfun (vector-type "LLVMVectorType") type-ref
   (element-type type-ref)
   (element-count :unsigned-int))
+
 (defcfun (get-element-type "LLVMGetElementType") type-ref
   (type type-ref))
 (defcfun (get-array-length "LLVMGetArrayLength") :unsigned-int
@@ -249,6 +250,11 @@
   (pointer-type type-ref))
 (defcfun (get-vector-size "LLVMGetVectorSize") :unsigned-int
   (vector-type type-ref))
+
+;;; Operations on other types
+(defcfun (void-type "LLVMVoidType") type-ref)
+(defcfun (label-type "LLVMLabelType") type-ref)
+(defcfun (opaque-type "LLVMOpaqueType") type-ref)
 
 ;;; Operations on all values
 (defcfun (type-of "LLVMTypeOf") type-ref

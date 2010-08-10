@@ -170,4 +170,7 @@
    #:dump-type
    #:dump-value-to-string
    #:dump-type-to-string
-   #:dump-module-to-string))
+   #:dump-module-to-string
+   #:void-type
+   #:label-type
+   #:opaque-type))
