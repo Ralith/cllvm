@@ -195,6 +195,18 @@
 (defcfun (dispose-module "LLVMDisposeModule") :void
   (module module-ref))
 
+;;; Type names
+(defcfun (add-type-name "LLVMAddTypeName") :boolean
+  (module module-ref)
+  (name :string)
+  (type type-ref))
+(defcfun (delete-type-name "LLVMDeleteTypeName") :void
+  (module module-ref)
+  (name :string))
+(defcfun (get-type-by-name "LLVMGetTypeByName") type-ref
+  (module module-ref)
+  (name :string))
+
 (defcfun (dump-module "LLVMDumpModule") :void
   (module module-ref))
 (defcfun (dump-module-to-string "LLVMDumpModuleToString") freed-string

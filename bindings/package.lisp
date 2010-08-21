@@ -173,4 +173,7 @@
    #:dump-module-to-string
    #:void-type
    #:label-type
-   #:opaque-type))
+   #:opaque-type
+   #:add-type-name
+   #:delete-type-name
+   #:get-type-by-name))
