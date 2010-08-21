@@ -243,6 +243,12 @@
   (element-count :unsigned-int)
   (packed :boolean))
 
+(defcfun (count-struct-element-types "LLVMCountStructElementTypes") :unsigned-int
+  (struct-type type-ref))
+(defcfun (get-struct-element-types "LLVMGetStructElementTypes") :unsigned-int
+  (struct-type type-ref)
+  (destination-buffer (:pointer type-ref)))
+
 ;;; Operations on array, pointer, and vector types (sequence types)
 (defcfun (array-type "LLVMArrayType") type-ref
   (element-type type-ref)

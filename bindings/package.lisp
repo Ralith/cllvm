@@ -176,4 +176,6 @@
    #:opaque-type
    #:add-type-name
    #:delete-type-name
-   #:get-type-by-name))
+   #:get-type-by-name
+   #:count-struct-element-types
+   #:get-struct-element-types))

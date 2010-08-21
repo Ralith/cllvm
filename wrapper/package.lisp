@@ -11,4 +11,5 @@
    #:create-jit-compiler-for-module
    #:struct-type
    #:const-gep
-   #:build-gep))
+   #:build-gep
+   #:get-struct-element-types))

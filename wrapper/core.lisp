@@ -8,6 +8,13 @@
   (with-array-of-list (e-t-array length element-types)
     (%llvm:struct-type e-t-array length packed)))
 
+(defun get-struct-element-types (struct-type &aux
+                                 (size (%llvm:count-struct-element-types struct-type)))
+  (with-foreign-object (buffer '%llvm:type-ref size)
+    (%llvm:get-struct-element-types struct-type buffer)
+    (loop for index from 0 below size
+          collecting (mem-aref buffer '%llvm:type-ref index))))
+
 (defun const-gep (constant-pointer indices)
   (with-array-of-list (indice-array length indices)
     (%llvm:const-gep constant-pointer indice-array length)))
